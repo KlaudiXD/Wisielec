@@ -25,8 +25,8 @@ public class Main {
             for (int i = 0; i < arr.length; i++) {
                 if(ch == arr[i]){
                     arrTwo[i] = ch;
-                } else{ countLetters++;
-
+                } else{
+                    countLetters++;
                 }
             }
             if (countLetters==arrTwo.length){
@@ -36,9 +36,19 @@ public class Main {
             System.out.println(userError);
             if(userError == 10){
                 System.out.println("Przegrałeś");
+                break;
             }
-
             print(arrTwo);
+            int countWin = 0;
+            for (int i = 0; i < arr.length; i++) {
+                if(arr[i] == arrTwo[i]){
+                    countWin++;
+                }
+            }
+            if(countWin == arr.length){
+                System.out.println("Wygrałeś");
+                break;
+            }
         }
 
 
