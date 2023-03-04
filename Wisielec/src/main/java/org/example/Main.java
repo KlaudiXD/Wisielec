@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -21,34 +22,23 @@ public class Main {
             System.out.println();
             String input = scanner.next();
             char ch = input.charAt(0);
-            int countLetters=0;
-            for (int i = 0; i < arr.length; i++) {
-                if(ch == arr[i]){
-                    arrTwo[i] = ch;
-                } else{
-                    countLetters++;
-                }
-            }
-            if (countLetters==arrTwo.length){
-                userError++;
-            }
-            countLetters=0;
+
             System.out.println(userError);
             if(userError == 10){
                 System.out.println("Przegrałeś");
                 break;
             }
             print(arrTwo);
-            int countWin = 0;
-            for (int i = 0; i < arr.length; i++) {
-                if(arr[i] == arrTwo[i]){
-                    countWin++;
-                }
-            }
-            if(countWin == arr.length){
+            if (checkWin(arr, arrTwo)){
                 System.out.println("Wygrałeś");
                 break;
             }
+            /*String checkWin= Arrays.toString(arrTwo);
+            System.out.println(checkWin);
+            if(checkWin.equals(randomWord)){
+                System.out.println("Wygrałeś");
+                break;
+            }*/
         }
 
 
@@ -67,6 +57,30 @@ public class Main {
         for (int i = 0; i < cha.length; i++) {
             System.out.print(cha[i]);
         }
+        System.out.println();
+    }
+    public static boolean checkWin (char [] original,char [] check){
+        int countWin = 0;
+        for (int i = 0; i < original.length; i++) {
+            if(original[i] == check[i]){
+                countWin++;
+            }
+        }
+        return countWin==original.length;
+    }
+    public static boolean checLose(char [] original,char [] check){
+        int countLetters=0;
+        for (int i = 0; i < arr.length; i++) {
+            if(ch == arr[i]){
+                arrTwo[i] = ch;
+            } else{
+                countLetters++;
+            }
+        }
+        if (countLetters==arrTwo.length){
+            userError++;
+        }
+        countLetters=0;
     }
 
 }
