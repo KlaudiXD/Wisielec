@@ -21,11 +21,19 @@ public class Main {
             System.out.println();
             String input = scanner.next();
             char ch = input.charAt(0);
+            int countLetters=0;
             for (int i = 0; i < arr.length; i++) {
                 if(ch == arr[i]){
                     arrTwo[i] = ch;
+                } else{ countLetters++;
+
                 }
             }
+            if (countLetters==arrTwo.length){
+                userError++;
+            }
+            countLetters=0;
+            System.out.println(userError);
             if(userError == 10){
                 System.out.println("Przegrałeś");
             }
