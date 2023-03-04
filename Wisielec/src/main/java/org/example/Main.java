@@ -21,10 +21,21 @@ public class Main {
         while(userError <= maxErrors){
             System.out.println();
             String input = scanner.next();
-            char ch = input.charAt(0);
-
+            char letter = input.charAt(0);
             System.out.println(userError);
-            if(userError == 10){
+            int countLetters=0;
+            for (int i = 0; i < arr.length; i++) {
+                if(letter == arr[i]){
+                    arrTwo[i] = letter;
+                } else{
+                    countLetters++;
+                }
+            }
+            if (countLetters==arrTwo.length){
+                userError++;
+            }
+            countLetters=0;
+            if(userError == maxErrors){
                 System.out.println("Przegrałeś");
                 break;
             }
@@ -68,19 +79,6 @@ public class Main {
         }
         return countWin==original.length;
     }
-    public static boolean checLose(char [] original,char [] check){
-        int countLetters=0;
-        for (int i = 0; i < arr.length; i++) {
-            if(ch == arr[i]){
-                arrTwo[i] = ch;
-            } else{
-                countLetters++;
-            }
-        }
-        if (countLetters==arrTwo.length){
-            userError++;
-        }
-        countLetters=0;
-    }
+
 
 }
