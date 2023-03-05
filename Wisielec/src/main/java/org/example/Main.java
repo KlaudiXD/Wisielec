@@ -7,6 +7,7 @@ public class Main {
     static Scanner scanner= new Scanner(System.in);
 
     public static void main(String[] args) {
+        // Utworzenie tabeli haseł
         String [] tab={"pies","kot","bocian","krowa","chomik"};
         String randomWord= tab[getRandom()];
         System.out.println(randomWord);
@@ -19,10 +20,10 @@ public class Main {
         fill(arrTwo);
         print(arrTwo);
         while(userError <= maxErrors){
+            System.out.printf("Popełniłeś %d z %d błędów",userError,maxErrors);
             System.out.println();
             String input = scanner.next();
             char letter = input.charAt(0);
-            System.out.println(userError);
             int countLetters=0;
             for (int i = 0; i < arr.length; i++) {
                 if(letter == arr[i]){
