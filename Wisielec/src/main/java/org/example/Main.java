@@ -68,6 +68,7 @@ public class Main {
     }
    //wydrukowanie tablicy
     public static void print (char [] cha){
+        System.out.print("Słowo do zgadnięcia: ");
         for (int i = 0; i < cha.length; i++) {
             System.out.print(cha[i]);
         }
