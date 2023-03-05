@@ -1,20 +1,11 @@
 package org.example;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     static Scanner scanner= new Scanner(System.in);
 
-    public static final String WISIELEC_PRZEGRANA =
-            " +---+\n" +
-            " |   |\n" +
-            " O   |\n" +
-            "/|\\  |\n" +   //if the user missed six guesses.
-            "/ \\  |\n" +
-            "     |\n" +
-            " =========\n";
-    public static String[] wisielec = {
+    public static String[] rysunek = {
                     "+---+\n" +
                     "|   |\n" +
                     "    |\n" +
@@ -63,14 +54,22 @@ public class Main {
                     "     |\n" +
                     " =========\n",
 
-            WISIELEC_PRZEGRANA};
+                    " +---+\n" +
+                    " |   |\n" +
+                    " O   |\n" +
+                    "/|\\  |\n" +   //if the user missed six guesses.
+                    "/ \\  |\n" +
+                    "     |\n" +
+                    " =========\n"};
 
     public static void main(String[] args) {
+    gameLogic();
+    }
+    public static void gameLogic(){
         // Utworzenie tabeli haseł
         String [] tab={"pies","kot","bocian","krowa","chomik"};
         //wybranie hasła za pomocą losowego indexu
         String randomWord= tab[getRandom()];
-        System.out.println(randomWord);
         int userError=0;
         //zamiana słowa na tablicę char
         char [] arr= randomWord.toCharArray();
@@ -79,10 +78,10 @@ public class Main {
         System.out.println("Zgadnij wylosowane słowo: ");
         fill(arrTwo);
         //pętla, która zostaje wykonana dpóki gracz wygra lub przegra
-        while(userError < wisielec.length){
+        while(userError < rysunek.length){
             System.out.println(showImage(userError));
             print(arrTwo);
-            if(userError == wisielec.length-1){
+            if(userError == rysunek.length-1){
                 System.out.println("Przegrałeś");
                 break;
             }
@@ -107,19 +106,17 @@ public class Main {
             }
             countLetters=0;
         }
-
-
     }
     // pokazuje obrazek wisielca
     public static String showImage(int errors){
         switch (errors){
-            case 0: return wisielec[0];
-            case 1: return wisielec[1];
-            case 2: return wisielec[2];
-            case 3: return wisielec[3];
-            case 4: return wisielec[4];
-            case 5: return wisielec[5];
-            default: return wisielec[6];
+            case 0: return rysunek[0];
+            case 1: return rysunek[1];
+            case 2: return rysunek[2];
+            case 3: return rysunek[3];
+            case 4: return rysunek[4];
+            case 5: return rysunek[5];
+            default: return rysunek[6];
         }
     }
     //losowanie randomowej cyfry
