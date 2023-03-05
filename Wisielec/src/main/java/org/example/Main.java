@@ -6,14 +6,71 @@ import java.util.Scanner;
 public class Main {
     static Scanner scanner= new Scanner(System.in);
 
+    public static final String WISIELEC_PRZEGRANA =
+            " +---+\n" +
+            " |   |\n" +
+            " O   |\n" +
+            "/|\\  |\n" +   //if the user missed six guesses.
+            "/ \\  |\n" +
+            "     |\n" +
+            " =========\n";
+    public static String[] wisielec = {
+                    "+---+\n" +
+                    "|   |\n" +
+                    "    |\n" +
+                    "    |\n" +   //if the user didn't miss any guesses.
+                    "    |\n" +
+                    "    |\n" +
+                    "=========\n",
+
+                    "+---+\n" +
+                    "|   |\n" +
+                    "O   |\n" +   //if the user missed one guess.
+                    "    |\n" +
+                    "    |\n" +
+                    "    |\n" +
+                    "=========\n",
+
+                    "+---+\n" +
+                    "|   |\n" +
+                    "O   |\n" +    //if the user missed two guesses.
+                    "|   |\n" +
+                    "    |\n" +
+                    "    |\n" +
+                    "=========\n",
+
+                    " +---+\n" +
+                    " |   |\n" +
+                    " O   |\n" +   //if the user missed three guesses.
+                    "/|   |\n" +
+                    "     |\n" +
+                    "     |\n" +
+                    " =========\n",
+
+                    " +---+\n" +
+                    " |   |\n" +
+                    " O   |\n" +
+                    "/|\\  |\n" +   //if the user missed four guesses.
+                    "     |\n" +
+                    "     |\n" +
+                    " =========\n",
+
+                    " +---+\n" +
+                    " |   |\n" +
+                    " O   |\n" +
+                    "/|\\  |\n" +  //if the user missed five guesses.
+                    "/    |\n" +
+                    "     |\n" +
+                    " =========\n",
+
+            WISIELEC_PRZEGRANA};
+
     public static void main(String[] args) {
         // Utworzenie tabeli haseł
         String [] tab={"pies","kot","bocian","krowa","chomik"};
         //wybranie hasła za pomocą losowego indexu
         String randomWord= tab[getRandom()];
         System.out.println(randomWord);
-        //określenie max liczby błędów gracza
-        int maxErrors=10;
         int userError=0;
         //zamiana słowa na tablicę char
         char [] arr= randomWord.toCharArray();
@@ -21,10 +78,18 @@ public class Main {
         System.out.println("To jest gra wisielec :)");
         System.out.println("Zgadnij wylosowane słowo: ");
         fill(arrTwo);
-        print(arrTwo);
         //pętla, która zostaje wykonana dpóki gracz wygra lub przegra
-        while(userError <= maxErrors){
-            System.out.printf("Popełniłeś %d z %d błędów",userError,maxErrors);
+        while(userError < wisielec.length){
+            System.out.println(showImage(userError));
+            print(arrTwo);
+            if(userError == wisielec.length-1){
+                System.out.println("Przegrałeś");
+                break;
+            }
+            if (checkWin(arr, arrTwo)){
+                System.out.println("Wygrałeś");
+                break;
+            }
             System.out.println();
             String input = scanner.next();
             char letter = input.charAt(0);
@@ -41,19 +106,21 @@ public class Main {
                 userError++;
             }
             countLetters=0;
-            if(userError == maxErrors){
-                System.out.println("Przegrałeś");
-                break;
-            }
-            print(arrTwo);
-            if (checkWin(arr, arrTwo)){
-                System.out.println("Wygrałeś");
-                break;
-            }
-
         }
 
 
+    }
+    // pokazuje obrazek wisielca
+    public static String showImage(int errors){
+        switch (errors){
+            case 0: return wisielec[0];
+            case 1: return wisielec[1];
+            case 2: return wisielec[2];
+            case 3: return wisielec[3];
+            case 4: return wisielec[4];
+            case 5: return wisielec[5];
+            default: return wisielec[6];
+        }
     }
     //losowanie randomowej cyfry
     public static int getRandom(){
